@@ -14,10 +14,16 @@ void inicializarEstoque(Estoque *estoque, int capacidade){
 bool verificarProduto(Estoque *estoque, Produto *produto){
     
     for(int i = 0; i < estoque->total; i++){
-        if(estoque->produtos[i].codigo == produto->codigo){
+        if(estoque->produtos[i].codigo == produto->codigo || produto->codigo < 0){
             return true;
         }
         else if( strcmp(estoque->produtos[i].nome, produto->nome) == 0){
+            return true;
+        }
+        else if(produto->preco < 0){
+            return true;
+        }
+        else if(produto->quantidade < 0){
             return true;
         }
     }
@@ -53,7 +59,7 @@ void adicionarProduto(Estoque *estoque, Produto produto){
 
 void listarProdutos(Estoque *estoque){
     for(int i = 0; i < estoque->total; i++){
-        printf("Codigo: %d | Produto: %s | Preco: %.2f | Em estoque: %d\n", 
+        printf("Codigo: %d | Produto: %s | Preco: R$ %.2f | Em estoque: %d\n", 
                 estoque->produtos[i].codigo, 
                 estoque->produtos[i].nome,
                 estoque->produtos[i].preco,
