@@ -22,7 +22,8 @@ void adicionarProduto(Estoque *estoque, Produto produto);
 // void removerProduto(Estoque *estoque, int codigo, int *quantidade);
 void liberarEstoque(Estoque *estoque);
 void listarProdutos(Estoque *estoque);
-void construirProduto(Estoque *estoque, Produto *produto);
+void construirProduto(Produto *produto);
 bool verificarProduto(Estoque *estoque, Produto *produto);
+void salvarEstoque(Estoque *estoque);
 
 #endif

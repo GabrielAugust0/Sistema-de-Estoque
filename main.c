@@ -29,7 +29,7 @@ int main(){
 
         switch(opcao){
             case 1:
-                construirProduto(&estoque, &p);      // Permite que o usuário digite as informações relacionadas ao produto que será adicionado
+                construirProduto(&p);      // Permite que o usuário digite as informações relacionadas ao produto que será adicionado
 
                 if(verificarProduto(&estoque, &p)){  // Verifica se o produto já está cadastrado. Se sim, exibe uma mensagem de erro
                     system("cls");
@@ -46,9 +46,9 @@ int main(){
                 listarProdutos(&estoque);
                 break;
             case 3:
+                salvarEstoque(&estoque);    // Salva o estoque no arquivo
+                liberarEstoque(&estoque);   // Libera memória
                 exit(0);
         }
     }
-    
-    liberarEstoque(&estoque); // Libera memória
 }

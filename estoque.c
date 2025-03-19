@@ -30,7 +30,28 @@ bool verificarProduto(Estoque *estoque, Produto *produto){
     return false;
 }
 
-void construirProduto(Estoque *estoque, Produto *produto){
+void salvarEstoque(Estoque *estoque){
+
+    FILE *arquivo = fopen("estoque.txt", "w"); // Abre o arquivo para escrita
+
+    if(arquivo == NULL){
+        printf("Erro ao abrir o arquivo!\n");
+        exit(1);
+    }
+
+    for( int i = 0; i < estoque->total; i++){
+        fprintf(arquivo, "%d ; %s ; %.2f ; %d\n", 
+                estoque->produtos[i].codigo, 
+                estoque->produtos[i].nome, 
+                estoque->produtos[i].preco, 
+                estoque->produtos[i].quantidade);
+    }
+
+    fclose(arquivo); // Fecha o arquivo
+    printf("Estoque salvo com sucesso!\n");
+}
+
+void construirProduto(Produto *produto){
     system("cls");
     printf("Digite qual o codigo do produto: ");
     scanf("%d", &produto->codigo);
