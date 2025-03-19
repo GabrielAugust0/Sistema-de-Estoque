@@ -17,16 +17,9 @@ bool verificarProduto(Estoque *estoque, Produto *produto){
         if(estoque->produtos[i].codigo == produto->codigo){
             return true;
         }
-        else if(estoque->produtos[i].nome == produto->nome){
+        else if( strcmp(estoque->produtos[i].nome, produto->nome) == 0){
             return true;
         }
-        else if(estoque->produtos[i].preco == produto->preco){
-            return true;
-        }
-        else if(estoque->produtos[i].quantidade == produto->quantidade){
-            return true;
-        }
-
     }
     return false;
 }
@@ -36,9 +29,10 @@ void construirProduto(Estoque *estoque, Produto *produto){
     printf("Digite qual o codigo do produto: ");
     scanf("%d", &produto->codigo);
     printf("Digite o nome do produto: ");
-    scanf("%s", produto->nome);
+    getchar(); // Limpar o buffer do teclado
+    fgets(produto->nome, sizeof(produto->nome), stdin);
     printf("Digite o preco do produto: ");
-    scanf("%.2f", &produto->preco);
+    scanf("%f", &produto->preco);
     printf("Digite a quantidade do produto: ");
     scanf("%d", &produto->quantidade);
 }

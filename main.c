@@ -29,9 +29,9 @@ int main(){
 
         switch(opcao){
             case 1:
-                construirProduto(&estoque, &p);
+                construirProduto(&estoque, &p);      // Permite que o usuário digite as informações relacionadas ao produto que será adicionado
 
-                if(verificarProduto(&estoque, &p)){
+                if(verificarProduto(&estoque, &p)){  // Verifica se o produto já está cadastrado. Se sim, exibe uma mensagem de erro
                     system("cls");
                     printf("====== ERRO ======\n");
                     printf("Produto já existe no estoque!\n");
@@ -39,8 +39,8 @@ int main(){
                     system("pause");
                     break;
                 }
-                
-                adicionarProduto(&estoque, p);
+
+                adicionarProduto(&estoque, p);       // Adiciona o produto ao estoque caso ele não exista
                 break;
             case 2:
                 listarProdutos(&estoque);
