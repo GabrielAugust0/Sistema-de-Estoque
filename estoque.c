@@ -6,11 +6,13 @@
 
 
 int quantidadeProdutos(const char *arquivo){
+    
     FILE *file = fopen(arquivo, "r");
 
+    // Verificar se há estoque salvo
     if( file == NULL ){
-        printf("Erro ao abrir o arquivo!\n");
-        exit(1);
+        printf("Arquivo não encontrado. Criando novo estoque !\n");
+        return 1;
     }
 
     int quantidade;
@@ -28,6 +30,7 @@ int quantidadeProdutos(const char *arquivo){
 
 void inicializarEstoque(Estoque *estoque, int capacidade, const char *arquivo){
 
+    // Lê quantos produtos existem no estoque e define a capacidade do vetor dinâmico como o dobro
     capacidade = quantidadeProdutos("estoque.txt")*2;
 
     estoque->produtos = (Produto *) malloc(capacidade * sizeof(Produto));
@@ -38,7 +41,7 @@ void inicializarEstoque(Estoque *estoque, int capacidade, const char *arquivo){
 
     if( file == NULL ){
         printf("Arquivo não encontrado. Criando novo estoque!\n");
-        exit(1);
+        return;
     }
 
     while( fscanf(file, "%d;%49[^;];%f;%d\n",
@@ -83,7 +86,7 @@ void salvarEstoque(Estoque *estoque){
     }
 
     for( int i = 0; i < estoque->total; i++){
-        fprintf(arquivo, "%d ; %s ; %.2f ; %d\n", 
+        fprintf(arquivo,"%d;%s;%.2f;%d\n", 
                 estoque->produtos[i].codigo, 
                 estoque->produtos[i].nome, 
                 estoque->produtos[i].preco, 
