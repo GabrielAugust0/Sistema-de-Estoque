@@ -23,10 +23,19 @@ int main(){
             case 1:
                 construirProduto(&p);      // Permite que o usuário digite as informações relacionadas ao produto que será adicionado
 
-                if(verificarProduto(&estoque, &p)){  // Verifica se o produto já está cadastrado. Se sim, exibe uma mensagem de erro
+                if(verificarProduto(&estoque, &p) == 0){  // Verifica se o produto já está cadastrado. Se sim, exibe uma mensagem de erro
                     system("cls");
                     printf("====== ERRO ======\n");
-                    printf("Produto já existe no estoque!\n");
+                    printf("Produto já existe no estoque !\n");
+                    printf("===================\n");
+                    system("pause");
+                    break;
+                }
+
+                if(verificarProduto(&estoque, &p) == 1){  // Verifica se as informações são válidas. Se sim, exibe uma mensagem de erro
+                    system("cls");
+                    printf("====== ERRO ======\n");
+                    printf("Informações inválidas !\n");
                     printf("===================\n");
                     system("pause");
                     break;

@@ -57,23 +57,26 @@ void inicializarEstoque(Estoque *estoque, int capacidade, const char *arquivo){
     printf("Estoque carregado com sucesso! %d produtos \n", estoque->total);
 }
 
-bool verificarProduto(Estoque *estoque, Produto *produto){
+int verificarProduto(Estoque *estoque, Produto *produto){
     
     for(int i = 0; i < estoque->total; i++){
-        if(estoque->produtos[i].codigo == produto->codigo || produto->codigo < 0){
-            return true;
+        if(estoque->produtos[i].codigo == produto->codigo){
+            return 0;
         }
         else if( strcmp(estoque->produtos[i].nome, produto->nome) == 0){
-            return true;
+            return 0;
         }
         else if(produto->preco < 0){
-            return true;
+            return 1;
         }
         else if(produto->quantidade < 0){
-            return true;
+            return 1;
+        }
+        else if(produto->codigo < 0){
+            return 1;
         }
     }
-    return false;
+    return -1;
 }
 
 void salvarEstoque(Estoque *estoque){
@@ -101,9 +104,12 @@ void construirProduto(Produto *produto){
     system("cls");
     printf("Digite qual o codigo do produto: ");
     scanf("%d", &produto->codigo);
+    
     printf("Digite o nome do produto: ");
     getchar(); // Limpar o buffer do teclado
     fgets(produto->nome, sizeof(produto->nome), stdin);
+    produto->nome[strcspn(produto->nome, "\n")] = '\0';  // Remove o \n do final da string
+
     printf("Digite o preco do produto: ");
     scanf("%f", &produto->preco);
     printf("Digite a quantidade do produto: ");
