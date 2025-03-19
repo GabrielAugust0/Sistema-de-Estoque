@@ -5,10 +5,53 @@
 #include "estoque.h"
 
 
-void inicializarEstoque(Estoque *estoque, int capacidade){
+int quantidadeProdutos(const char *arquivo){
+    FILE *file = fopen(arquivo, "r");
+
+    if( file == NULL ){
+        printf("Erro ao abrir o arquivo!\n");
+        exit(1);
+    }
+
+    int quantidade;
+    char buffer[256];
+
+    // Contar a quantidade de itens no arquivo
+    while( fgets(buffer, sizeof(buffer), file) != NULL ){
+        quantidade++;
+    }
+
+    fclose(file);
+
+    return quantidade;
+}
+
+void inicializarEstoque(Estoque *estoque, int capacidade, const char *arquivo){
+
+    capacidade = quantidadeProdutos("estoque.txt")*2;
+
     estoque->produtos = (Produto *) malloc(capacidade * sizeof(Produto));
     estoque->total = 0;
     estoque->capacidade = capacidade;
+
+    FILE *file = fopen(arquivo, "r");
+
+    if( file == NULL ){
+        printf("Arquivo não encontrado. Criando novo estoque!\n");
+        exit(1);
+    }
+
+    while( fscanf(file, "%d;%49[^;];%f;%d\n",
+                  &estoque->produtos[estoque->total].codigo,
+                  estoque->produtos[estoque->total].nome,
+                  &estoque->produtos[estoque->total].preco,
+                  &estoque->produtos[estoque->total].quantidade) != EOF ){
+
+        estoque->total++;
+    }
+
+    fclose(file);
+    printf("Estoque carregado com sucesso! %d produtos \n", estoque->total);
 }
 
 bool verificarProduto(Estoque *estoque, Produto *produto){

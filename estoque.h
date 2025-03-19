@@ -17,7 +17,7 @@ typedef struct Estoque{
     int capacidade;        // Capacidade máxima
 }Estoque;
 
-void inicializarEstoque(Estoque *estoque, int capacidade);
+void inicializarEstoque(Estoque *estoque, int capacidade, const char *arquivo);
 void adicionarProduto(Estoque *estoque, Produto produto);
 // void removerProduto(Estoque *estoque, int codigo, int *quantidade);
 void liberarEstoque(Estoque *estoque);
