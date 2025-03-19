@@ -20,15 +20,35 @@ int main(){
 
     while(1){
         Produto p;
+        system("cls");
         printf("====== MENU ======\n");
         printf("1 - Adicionar produto\n");
         printf("2 - Listar produtos\n");
         printf("3 - Sair\n");
         scanf("%d", &opcao);
-        adicionarProduto(&estoque, p);
-    }
 
-    listarProdutos(&estoque);
+        switch(opcao){
+            case 1:
+                construirProduto(&estoque, &p);
+
+                if(verificarProduto(&estoque, &p)){
+                    system("cls");
+                    printf("====== ERRO ======\n");
+                    printf("Produto já existe no estoque!\n");
+                    printf("===================\n");
+                    system("pause");
+                    break;
+                }
+                
+                adicionarProduto(&estoque, p);
+                break;
+            case 2:
+                listarProdutos(&estoque);
+                break;
+            case 3:
+                exit(0);
+        }
+    }
     
     liberarEstoque(&estoque); // Libera memória
 }

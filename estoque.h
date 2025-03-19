@@ -1,6 +1,9 @@
 #ifndef ESTOQUE_H
 #define ESTOQUE_H
 
+#include <stdbool.h>
+
+
 typedef struct Produto{
     int codigo;
     char nome[50];
@@ -19,5 +22,7 @@ void adicionarProduto(Estoque *estoque, Produto produto);
 // void removerProduto(Estoque *estoque, int codigo, int *quantidade);
 void liberarEstoque(Estoque *estoque);
 void listarProdutos(Estoque *estoque);
+void construirProduto(Estoque *estoque, Produto *produto);
+bool verificarProduto(Estoque *estoque, Produto *produto);
 
 #endif
