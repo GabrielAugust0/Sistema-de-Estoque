@@ -17,7 +17,8 @@ int main(){
         printf("====== MENU ======\n");
         printf("1 - Adicionar produto\n");
         printf("2 - Listar produtos\n");
-        printf("3 - Sair\n");
+        printf("3 - Remover o produto \n");
+        printf("4 - Sair\n");
         scanf("%d", &opcao);
 
         switch(opcao){
@@ -49,6 +50,9 @@ int main(){
                 system("pause");
                 break;
             case 3:
+                removerProduto(&estoque);
+                break;
+            case 4:
                 salvarEstoque(&estoque);    // Salva o estoque no arquivo
                 liberarEstoque(&estoque);   // Libera memória
                 exit(0);

@@ -154,6 +154,49 @@ void listarProdutos(Estoque *estoque){
     }
 }
 
+void removerProduto(Estoque *estoque){
+
+    int codigo = 0;
+    int qtd = 0;
+
+    system("cls");
+    printf("Digite o codigo do produto \n");
+    scanf("%d", &codigo);
+    system("cls");
+    printf("Digite a quantidade que deseja remover \n");
+    scanf("%d", &qtd);
+
+    for(int i = 0; i < estoque->total; i++){
+
+        if( estoque->produtos[i].codigo == codigo ){
+            
+            // Caso não tenha nenhum produto em estoque...
+            if(estoque->produtos[i].quantidade <= 0  ){
+                printf("Nao tem mais %s no estoque! \n", estoque->produtos[i].nome);
+                system("pause");
+                return;
+            } 
+            // Caso tenha menos do que a quantidade especificada...
+            if(estoque->produtos[i].quantidade < qtd ){
+                printf("So tem %d %s no estoque. Dessa forma, nao foi possivel remover.\n",
+                        estoque->produtos[i].quantidade,
+                        estoque->produtos[i].nome);
+                system("pause");
+                return;
+            }
+            
+
+            estoque->produtos[i].quantidade -= qtd;
+            
+            printf("Foram removidos %d %s \n",
+                   qtd,
+                   estoque->produtos[i].nome);
+            system("pause");
+            return;
+        }
+    }
+}
+
 void liberarEstoque(Estoque *estoque){
     free(estoque->produtos);
     estoque->total = 0;

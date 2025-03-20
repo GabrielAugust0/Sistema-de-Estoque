@@ -22,5 +22,6 @@ void listarProdutos(Estoque *estoque);
 void construirProduto(Produto *produto);
 int verificarProduto(Estoque *estoque, Produto *produto);
 void salvarEstoque(Estoque *estoque);
+void removerProduto(Estoque *estoque);
 
 #endif
