@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
 #include "estoque.h"
 
@@ -15,7 +14,9 @@ int quantidadeProdutos(const char *arquivo){
         return 1;
     }
 
-    int quantidade;
+    // Caso exista estoque ...
+
+    int quantidade = 0;
     char buffer[256];
 
     // Contar a quantidade de itens no arquivo
@@ -59,6 +60,11 @@ void inicializarEstoque(Estoque *estoque, int capacidade, const char *arquivo){
 
 int verificarProduto(Estoque *estoque, Produto *produto){
     
+    // Retornos:
+    // -1: Produto válido e não existe no estoque
+    //  0: Produto já existe (código ou nome duplicado)
+    //  1: Dados inválidos (preço, quantidade ou código negativo)
+
     for(int i = 0; i < estoque->total; i++){
         if(estoque->produtos[i].codigo == produto->codigo){
             return 0;
@@ -120,7 +126,15 @@ void adicionarProduto(Estoque *estoque, Produto produto){
 
     // Realocar a memória para adicionar o novo produto, se necessário...
     if(estoque->total >= estoque->capacidade){
-        estoque->produtos = (Produto *) realloc(estoque->produtos, 2 * estoque->capacidade * sizeof(Produto));
+
+        Produto *temp = (Produto *)realloc(estoque->produtos, 2 * estoque->capacidade * sizeof(Produto));
+        // Confere se a alocação foi realizada com sucesso...
+        if( temp == NULL){
+            printf("Erro ao realocar memória!\n");
+            return;
+        }
+
+        estoque->produtos = temp;
         estoque->capacidade *= 2; // Dobra a capacidade
     }
 

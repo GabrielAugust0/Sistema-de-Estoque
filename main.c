@@ -11,6 +11,7 @@ int main(){
     int opcao = 0;
 
     while(1){
+        
         Produto p;
         system("cls");
         printf("====== MENU ======\n");
