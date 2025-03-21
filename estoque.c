@@ -24,7 +24,7 @@ int quantidadeProdutos(const char *arquivo){
         quantidade++;
     }
 
-    fclose(file);
+    fclose(file); // Garante que toda a informação que está no buffer será gravada na memória
 
     return quantidade;
 }
@@ -34,17 +34,20 @@ void inicializarEstoque(Estoque *estoque, int capacidade, const char *arquivo){
     // Lê quantos produtos existem no estoque e define a capacidade do vetor dinâmico como o dobro
     capacidade = quantidadeProdutos("estoque.txt")*2;
 
+    // Cria o estoque zerado
     estoque->produtos = (Produto *) malloc(capacidade * sizeof(Produto));
     estoque->total = 0;
     estoque->capacidade = capacidade;
 
     FILE *file = fopen(arquivo, "r");
 
+    // Se não houver arquivo txt, retorna o estoque zerado
     if( file == NULL ){
         printf("Arquivo não encontrado. Criando novo estoque!\n");
         return;
     }
 
+    // Caso tenha arquivo TXT, preenche o estoque 
     while( fscanf(file, "%d;%49[^;];%f;%d\n",
                   &estoque->produtos[estoque->total].codigo,
                   estoque->produtos[estoque->total].nome,
@@ -166,6 +169,13 @@ void removerProduto(Estoque *estoque){
     printf("Digite a quantidade que deseja remover \n");
     scanf("%d", &qtd);
 
+    if( codigo <= 0 || qtd <= 0 ){
+        system("cls");
+        printf("Informacao invalida!\n");
+        system("pause");
+        return;
+    }
+
     for(int i = 0; i < estoque->total; i++){
 
         if( estoque->produtos[i].codigo == codigo ){
@@ -195,6 +205,10 @@ void removerProduto(Estoque *estoque){
             return;
         }
     }
+
+    system("cls");
+    printf("O codigo %d nao eh correspondente a nenhum produto do estoque. \n", codigo);
+    system("pause");
 }
 
 void liberarEstoque(Estoque *estoque){
