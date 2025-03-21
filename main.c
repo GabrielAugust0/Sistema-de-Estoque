@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "estoque.h"
+#include "entrada.h"
 
 
 int main(){
@@ -14,12 +16,7 @@ int main(){
         
         Produto p;
         system("cls");
-        printf("====== MENU ======\n");
-        printf("1 - Adicionar produto\n");
-        printf("2 - Listar produtos\n");
-        printf("3 - Remover o produto \n");
-        printf("4 - Sair\n");
-        scanf("%d", &opcao);
+        opcao = lerInteiro("====== MENU ======\n1 - Adicionar produto\n2 - Listar produtos\n3 - Remover o produto \n4 - Sair\n");
 
         switch(opcao){
             case 1:

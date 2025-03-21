@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
+#include <ctype.h>
 #include "estoque.h"
+#include "entrada.h"
 
 
 int quantidadeProdutos(const char *arquivo){
@@ -111,18 +114,10 @@ void salvarEstoque(Estoque *estoque){
 
 void construirProduto(Produto *produto){
     system("cls");
-    printf("Digite qual o codigo do produto: ");
-    scanf("%d", &produto->codigo);
-    
-    printf("Digite o nome do produto: ");
-    getchar(); // Limpar o buffer do teclado
-    fgets(produto->nome, sizeof(produto->nome), stdin);
-    produto->nome[strcspn(produto->nome, "\n")] = '\0';  // Remove o \n do final da string
-
-    printf("Digite o preco do produto: ");
-    scanf("%f", &produto->preco);
-    printf("Digite a quantidade do produto: ");
-    scanf("%d", &produto->quantidade);
+    produto->codigo = lerInteiro("Digite qual o codigo do produto: ");
+    lerString("Digite o nome do produto: ", produto->nome, 50);
+    produto->preco = lerFloat("Digite o preco do produto: ");
+    produto->quantidade = lerInteiro("Digite a quantidade do produto: ");
 }
 
 void adicionarProduto(Estoque *estoque, Produto produto){
@@ -163,11 +158,10 @@ void removerProduto(Estoque *estoque){
     int qtd = 0;
 
     system("cls");
-    printf("Digite o codigo do produto \n");
-    scanf("%d", &codigo);
+    codigo = lerInteiro("Digite o codigo do produto \n");
     system("cls");
-    printf("Digite a quantidade que deseja remover \n");
-    scanf("%d", &qtd);
+    qtd    = lerInteiro("Digite a quantidade que deseja remover \n");
+    
 
     if( codigo <= 0 || qtd <= 0 ){
         system("cls");
