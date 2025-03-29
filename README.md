@@ -1,6 +1,6 @@
 🏷️ Sistema de Estoque
 
-Um sistema de gerenciamento de estoque em C, projetado para facilitar o controle de produtos, fornecendo recursos de cadastro, listagem e manipulação de dados.
+- Um sistema de gerenciamento de estoque em C, projetado para facilitar o controle de produtos, fornecendo recursos de cadastro, listagem e manipulação de dados.
 
 ✅ Funcionalidades
 
@@ -16,38 +16,38 @@ Um sistema de gerenciamento de estoque em C, projetado para facilitar o controle
 
 🛠️ Estrutura de Arquivos
 
-estoque.h - Definição das estruturas e funções de controle de estoque.
+- estoque.h - Definição das estruturas e funções de controle de estoque.
 
-entrada.h - Declaração das funções de entrada e validação.
+- entrada.h - Declaração das funções de entrada e validação.
 
-entrada.c - Implementação das funções de entrada e validação.
+- entrada.c - Implementação das funções de entrada e validação.
 
 🚀 Como Executar o Projeto
 
-Clone o repositório:
+- Clone o repositório:
 
-git clone https://github.com/GabrielAugust0/Sistema-de-Estoque.git
+-- git clone https://github.com/GabrielAugust0/Sistema-de-Estoque.git
 
-Compile o projeto:
+- Compile o projeto:
 
-gcc -o estoque main.c entrada.c
+-- gcc -o estoque main.c entrada.c
 
-Execute o programa:
+- Execute o programa:
 
-./estoque
+-- ./estoque
 
 ⚙️ Exemplo de Uso
 
-Informe o nome, código, preço e quantidade do produto.
+- Informe o nome, código, preço e quantidade do produto.
 
-Liste os produtos cadastrados.
+- Liste os produtos cadastrados.
 
-Salve os dados para uso posterior.
+- Salve os dados para uso posterior.
 
 🤝 Contribuições
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
+- Contribuições são bem-vindas! Sinta-se à vontade para abrir issues e pull requests.
 
 📝 Licença
 
-Este projeto é de código aberto e está licenciado sob a MIT License.
+- Este projeto é de código aberto e está licenciado sob a MIT License.
