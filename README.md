@@ -26,15 +26,15 @@
 
 - Clone o repositório:
 
--- git clone https://github.com/GabrielAugust0/Sistema-de-Estoque.git
+ git clone https://github.com/GabrielAugust0/Sistema-de-Estoque.git
 
 - Compile o projeto:
 
--- gcc -o estoque main.c entrada.c
+ gcc -o estoque main.c entrada.c
 
 - Execute o programa:
 
--- ./estoque
+ ./estoque
 
 ⚙️ Exemplo de Uso
 
