@@ -4,15 +4,15 @@ Um sistema de gerenciamento de estoque em C, projetado para facilitar o controle
 
 ✅ Funcionalidades
 
-📦 Cadastro de Produtos
+- Cadastro de Produtos
 
-📝 Listagem de Produtos
+- Listagem de Produtos
 
-🗑️ Remoção de Produtos (em desenvolvimento)
+- Remoção de Produtos (em desenvolvimento)
 
-💾 Salvamento e Carregamento de Dados
+- Salvamento e Carregamento de Dados
 
-🟢 Validação de Entradas
+- Validação de Entradas
 
 🛠️ Estrutura de Arquivos
 
